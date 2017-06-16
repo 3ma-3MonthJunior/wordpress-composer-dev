@@ -1,0 +1,27 @@
+version: '2'
+services:
+    db:
+      image: mariadb:latest
+      environment:
+        MYSQL_ROOT_PASSWORD: wordpress
+        MYSQL_DATABASE: wordpress
+      volumes:
+        - ./data/db-mysql:/var/lib/mysql
+      ports:
+        - "3306:3306"
+    app:
+      build: .
+      links:
+        - db
+      volumes:
+        - ./wordpress:/var/www/wordpress
+    nginx:
+      image: nginx:1.12
+      links:
+        - app
+      volumes_from:
+        - app
+      volumes:
+        - ./docker/vhost.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - "8080:8080"

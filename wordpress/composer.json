@@ -1,0 +1,41 @@
+{
+  "name": "kacpers/wordpress-docker-php7-template",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Kacper Sieradzinski",
+      "email": "kacper@sieradzinski.pl"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress",
+        "type": "webroot",
+        "version": "4.7.5",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/WordPress/WordPress/archive/4.7.5.zip"
+        },
+        "require": {
+          "fancyguy/webroot-installer": "1.0.0"
+        }
+      }
+    }
+  ],
+  "extra": {
+    "webroot-dir": "wp",
+    "webroot-package": "wordpress"
+  },
+  "config": {
+    "secure-http": false
+  },
+  "require": {
+    "wordpress": "4.7.5"
+  }
+}
