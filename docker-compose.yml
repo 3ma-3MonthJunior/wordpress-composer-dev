@@ -1,9 +1,10 @@
 version: '2'
 services:
     db:
-      image: mariadb:latest
+      image: mysql:8
       environment:
         MYSQL_ROOT_PASSWORD: wordpress
+        MYSQL_USER: wordpress
         MYSQL_DATABASE: wordpress
       volumes:
         - ./data/db-mysql:/var/lib/mysql
@@ -15,6 +16,7 @@ services:
         - db
       volumes:
         - ./wordpress:/var/www/wordpress
+        - ./docker/php.ini:/usr/local/etc/php/php.ini
     nginx:
       image: nginx:1.12
       links:
